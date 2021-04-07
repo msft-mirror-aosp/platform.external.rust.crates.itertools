@@ -45,6 +45,7 @@ rust_library {
     edition: "2018",
     features: [
         "default",
+        "use_alloc",
         "use_std",
     ],
     rustlibs: [
