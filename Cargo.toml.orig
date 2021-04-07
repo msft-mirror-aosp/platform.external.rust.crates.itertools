@@ -1,6 +1,6 @@
 [package]
 name = "itertools"
-version = "0.9.0"
+version = "0.10.0"
 
 license = "MIT/Apache-2.0"
 repository = "https://github.com/bluss/rust-itertools"
@@ -27,7 +27,8 @@ either = { version = "1.0", default-features = false }
 
 [dev-dependencies]
 rand = "0.7"
-criterion = "=0.3.0" # TODO update criterion version once it becomes compatible with our minimum required Rust verision or bump minimum required rust version
+criterion = "=0" # TODO how could this work with our minimum supported rust version?
+paste = "1.0.0" # Used in test_std to instanciate generic tests
 
 [dev-dependencies.quickcheck]
 version = "0.9"
@@ -38,7 +39,8 @@ version = "0.2"
 
 [features]
 default = ["use_std"]
-use_std = []
+use_std = ["use_alloc"]
+use_alloc = []
 
 [profile]
 bench = { debug = true }
@@ -65,4 +67,12 @@ harness = false
 
 [[bench]]
 name = "bench1"
+harness = false
+
+[[bench]]
+name = "combinations"
+harness = false
+
+[[bench]]
+name = "powerset"
 harness = false
