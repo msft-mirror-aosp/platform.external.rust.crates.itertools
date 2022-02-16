@@ -22,7 +22,3 @@ macro_rules! clone_fields {
         }
     }
 }
-
-macro_rules! ignore_ident{
-    ($id:ident, $($t:tt)*) => {$($t)*};
-}
