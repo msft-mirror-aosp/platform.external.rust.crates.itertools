@@ -1,5 +1,5 @@
 
-use std::iter::{FusedIterator, IntoIterator};
+use std::iter::IntoIterator;
 use alloc::rc::Rc;
 use std::cell::RefCell;
 
@@ -93,8 +93,3 @@ impl<'a, I> IntoIterator for &'a RcIter<I>
         self.clone()
     }
 }
-
-
-impl<A, I> FusedIterator for RcIter<I>
-    where I: FusedIterator<Item = A>
-{}
