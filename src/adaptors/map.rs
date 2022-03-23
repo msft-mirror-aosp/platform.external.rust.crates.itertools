@@ -1,7 +1,7 @@
 use std::iter::FromIterator;
 use std::marker::PhantomData;
 
-#[derive(Clone, Debug)]
+#[derive(Clone)]
 #[must_use = "iterator adaptors are lazy and do nothing unless consumed"]
 pub struct MapSpecialCase<I, F> {
     iter: I,
@@ -64,10 +64,10 @@ where
 
 /// An iterator adapter to apply a transformation within a nested `Result::Ok`.
 ///
-/// See [`.map_ok()`](crate::Itertools::map_ok) for more information.
+/// See [`.map_ok()`](../trait.Itertools.html#method.map_ok) for more information.
 pub type MapOk<I, F> = MapSpecialCase<I, MapSpecialCaseFnOk<F>>;
 
-/// See [`MapOk`].
+/// See [`MapOk`](struct.MapOk.html).
 #[deprecated(note = "Use MapOk instead", since = "0.10.0")]
 pub type MapResults<I, F> = MapOk<I, F>;
 
@@ -84,10 +84,6 @@ where
 #[derive(Clone)]
 pub struct MapSpecialCaseFnOk<F>(F);
 
-impl<F> std::fmt::Debug for MapSpecialCaseFnOk<F> {
-    debug_fmt_fields!(MapSpecialCaseFnOk,);
-}
-
 /// Create a new `MapOk` iterator.
 pub fn map_ok<I, F, T, U, E>(iter: I, f: F) -> MapOk<I, F>
 where
@@ -102,7 +98,7 @@ where
 
 /// An iterator adapter to apply `Into` conversion to each element.
 ///
-/// See [`.map_into()`](crate::Itertools::map_into) for more information.
+/// See [`.map_into()`](../trait.Itertools.html#method.map_into) for more information.
 pub type MapInto<I, R> = MapSpecialCase<I, MapSpecialCaseFnInto<R>>;
 
 impl<T: Into<U>, U> MapSpecialCaseFn<T> for MapSpecialCaseFnInto<U> {
@@ -112,10 +108,10 @@ impl<T: Into<U>, U> MapSpecialCaseFn<T> for MapSpecialCaseFnInto<U> {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone)]
 pub struct MapSpecialCaseFnInto<U>(PhantomData<U>);
 
-/// Create a new [`MapInto`] iterator.
+/// Create a new [`MapInto`](struct.MapInto.html) iterator.
 pub fn map_into<I, R>(iter: I) -> MapInto<I, R> {
     MapSpecialCase {
         iter,
