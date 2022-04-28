@@ -17,11 +17,17 @@
   "presubmit": [
     {
       "name": "apkdmverity.test"
+    },
+    {
+      "name": "microdroid_manager_test"
     }
   ],
   "presubmit-rust": [
     {
       "name": "apkdmverity.test"
+    },
+    {
+      "name": "microdroid_manager_test"
     }
   ]
 }
