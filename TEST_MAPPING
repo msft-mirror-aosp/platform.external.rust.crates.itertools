@@ -14,6 +14,14 @@
       "path": "external/rust/crates/unicode-xid"
     }
   ],
+  "postsubmit": [
+    {
+      "name": "apkdmverity.test"
+    },
+    {
+      "name": "microdroid_manager_test"
+    }
+  ],
   "presubmit": [
     {
       "name": "apkdmverity.test"
